@@ -146,10 +146,22 @@ public class Home : MonoBehaviour
 #endif
             //start local preview
             mRtcEngine.StartPreview();
-
-            AliRTCAuthInfo authInfo = // authInfo 从业务 appserver 获取
+            // authInfo 从业务 appserver 获取
+            // ckwxs2so
+            // 24f2feb9cd976671d4271ba0db6597f6
             //join channel
-            mRtcEngine.JoinChannel(authInfo, "username");
+
+
+            AliRTCAuthInfo ai = new AliRTCAuthInfo();
+            ai.appId = "ckwxs2so";
+            ai.userId = "myuserid";
+            ai.channel = "myfirstchannel";
+            ai.nonce = "AK-a04b4307-64d4-4c9e-be8f-13b42b3d4222";
+            ai.timestamp = 1584946092;
+            ai.token = "70f16e8615b510c3bd0ccfda19e7da448ff5b9d18e6443321b648d592ce6ce98";
+            ai.gslbArray = "https://rgslb.rtc.aliyuncs.com";
+            
+            mRtcEngine.JoinChannel(ai, "shawhu2000");
 
         }
 
@@ -165,7 +177,7 @@ public class Home : MonoBehaviour
         }
         else
         {
-            Debug.Log("加入频道失败");
+            Debug.Log("加入频道失败, errorcode:"+errorCode);
         }
     }
 
