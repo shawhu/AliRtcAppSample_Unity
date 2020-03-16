@@ -15,11 +15,12 @@ using UnityEngine.Android;
 
 public class Home : MonoBehaviour
 {
+    public Text info;
 
 	Button mControlButton = null;
 	bool mJoined = false;
 	IAliRtcEngine mRtcEngine = null;
-    private ArrayList permissionList = new ArrayList();
+    private ArrayList permissionList = new ArrayList(); 
 
 
     void Start ()
@@ -36,7 +37,7 @@ public class Home : MonoBehaviour
         Application.wantsToQuit += OnApplicationGoingToQuit;
 #endif
         mControlButton = GameObject.Find("ControlButton").GetComponent<Button>();
-        mControlButton.onClick.AddListener(OnControlButtonClicked);
+        //mControlButton.onClick.AddListener(OnControlButtonClicked);
 
         GameObject go = GameObject.Find("LocalVideoCube");
         VideoDisplaySurface surface = go.AddComponent<VideoDisplaySurface>();
@@ -112,8 +113,9 @@ public class Home : MonoBehaviour
 #endif
     }
 
-    private void OnControlButtonClicked()
+    public void OnControlButtonClicked()
 	{
+        Debug.Log("clicked");
         if(mJoined)
 		{
             //stop local preview
@@ -159,7 +161,7 @@ public class Home : MonoBehaviour
             ai.nonce = "AK-a04b4307-64d4-4c9e-be8f-13b42b3d4222";
             ai.timestamp = 1584946092;
             ai.token = "70f16e8615b510c3bd0ccfda19e7da448ff5b9d18e6443321b648d592ce6ce98";
-            ai.gslbArray = "https://rgslb.rtc.aliyuncs.com";
+            ai.gslbArray = "['https://rgslb.rtc.aliyuncs.com']";
             
             mRtcEngine.JoinChannel(ai, "shawhu2000");
 
@@ -174,10 +176,12 @@ public class Home : MonoBehaviour
         if (errorCode == 0)
         {
             Debug.Log("加入频道成功");
+            info.text = "加入频道成功";
         }
         else
         {
             Debug.Log("加入频道失败, errorcode:"+errorCode);
+            info.text = "加入频道失败, errorcode:" + errorCode;
         }
     }
 

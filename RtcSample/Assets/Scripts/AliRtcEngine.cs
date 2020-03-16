@@ -756,7 +756,7 @@ namespace ali_unity_rtc
             AliRtcSubscribe(uid);
         }
 
-#if UNITY_ANDROID || UNITY_IOS || UNITY_IPHONE
+#if (UNITY_ANDROID || UNITY_IOS || UNITY_IPHONE)
         public int GenerateTexture()
         {
             return AliRtcGenerateTexture();
